@@ -1,0 +1,106 @@
+nohup: ignoring input
+[2025-03-12 00:36:22,466: INFO/MainProcess] beat: Starting...
+[2025-03-12 04:00:01,401: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-13 00:05:00,954: WARNING/MainProcess] Exception in thread 
+[2025-03-13 00:05:01,034: WARNING/MainProcess] Thread-1 (send_daily_emails)
+[2025-03-13 00:05:01,034: WARNING/MainProcess] :
+[2025-03-13 00:05:01,034: WARNING/MainProcess] Traceback (most recent call last):
+[2025-03-13 00:05:01,034: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+[2025-03-13 00:05:01,083: WARNING/MainProcess]     
+[2025-03-13 00:05:01,083: WARNING/MainProcess] return self.cursor.execute(sql, params)
+[2025-03-13 00:05:01,084: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 76, in execute
+[2025-03-13 00:05:01,084: WARNING/MainProcess]     
+[2025-03-13 00:05:01,084: WARNING/MainProcess] return self.cursor.execute(query, args)
+[2025-03-13 00:05:01,084: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+[2025-03-13 00:05:01,084: WARNING/MainProcess]     
+[2025-03-13 00:05:01,084: WARNING/MainProcess] res = self._query(mogrified_query)
+[2025-03-13 00:05:01,084: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+[2025-03-13 00:05:01,086: WARNING/MainProcess]     
+[2025-03-13 00:05:01,086: WARNING/MainProcess] db.query(q)
+[2025-03-13 00:05:01,087: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/connections.py", line 280, in query
+[2025-03-13 00:05:01,090: WARNING/MainProcess]     
+[2025-03-13 00:05:01,090: WARNING/MainProcess] _mysql.connection.query(self, query)
+[2025-03-13 00:05:01,096: WARNING/MainProcess] MySQLdb
+[2025-03-13 00:05:01,096: WARNING/MainProcess] .
+[2025-03-13 00:05:01,096: WARNING/MainProcess] OperationalError
+[2025-03-13 00:05:01,097: WARNING/MainProcess] : 
+[2025-03-13 00:05:01,097: WARNING/MainProcess] (2013, 'Lost connection to MySQL server during query')
+[2025-03-13 00:05:01,098: WARNING/MainProcess] 
+The above exception was the direct cause of the following exception:
+[2025-03-13 00:05:01,098: WARNING/MainProcess] Traceback (most recent call last):
+[2025-03-13 00:05:01,098: WARNING/MainProcess]   File "/usr/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+[2025-03-13 00:05:01,099: WARNING/MainProcess]     
+[2025-03-13 00:05:01,099: WARNING/MainProcess] self.run()
+[2025-03-13 00:05:01,099: WARNING/MainProcess]   File "/usr/lib/python3.10/threading.py", line 953, in run
+[2025-03-13 00:05:01,099: WARNING/MainProcess]     
+[2025-03-13 00:05:01,099: WARNING/MainProcess] self._target(*self._args, **self._kwargs)
+[2025-03-13 00:05:01,102: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/HRM_App/wish_notification.py", line 368, in send_daily_emails
+[2025-03-13 00:05:01,105: WARNING/MainProcess]     
+[2025-03-13 00:05:01,105: WARNING/MainProcess] send_email_for_unresolved_complaints()
+[2025-03-13 00:05:01,105: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/HRM_App/wish_notification.py", line 185, in send_email_for_unresolved_complaints
+[2025-03-13 00:05:01,105: WARNING/MainProcess]     
+[2025-03-13 00:05:01,105: WARNING/MainProcess] for employee in employees:
+[2025-03-13 00:05:01,105: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/models/query.py", line 400, in __iter__
+[2025-03-13 00:05:01,105: WARNING/MainProcess]     
+[2025-03-13 00:05:01,105: WARNING/MainProcess] self._fetch_all()
+[2025-03-13 00:05:01,106: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+[2025-03-13 00:05:01,106: WARNING/MainProcess]     
+[2025-03-13 00:05:01,106: WARNING/MainProcess] self._result_cache = list(self._iterable_class(self))
+[2025-03-13 00:05:01,106: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+[2025-03-13 00:05:01,108: WARNING/MainProcess]     
+[2025-03-13 00:05:01,108: WARNING/MainProcess] results = compiler.execute_sql(
+[2025-03-13 00:05:01,108: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+[2025-03-13 00:05:01,108: WARNING/MainProcess]     
+[2025-03-13 00:05:01,108: WARNING/MainProcess] cursor.execute(sql, params)
+[2025-03-13 00:05:01,108: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+[2025-03-13 00:05:01,108: WARNING/MainProcess]     
+[2025-03-13 00:05:01,108: WARNING/MainProcess] return super().execute(sql, params)
+[2025-03-13 00:05:01,108: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+[2025-03-13 00:05:01,109: WARNING/MainProcess]     
+[2025-03-13 00:05:01,109: WARNING/MainProcess] return self._execute_with_wrappers(
+[2025-03-13 00:05:01,109: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+[2025-03-13 00:05:01,109: WARNING/MainProcess]     
+[2025-03-13 00:05:01,109: WARNING/MainProcess] return executor(sql, params, many, context)
+[2025-03-13 00:05:01,109: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+[2025-03-13 00:05:01,109: WARNING/MainProcess]     
+[2025-03-13 00:05:01,109: WARNING/MainProcess] with self.db.wrap_database_errors:
+[2025-03-13 00:05:01,109: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+[2025-03-13 00:05:01,109: WARNING/MainProcess]     
+[2025-03-13 00:05:01,109: WARNING/MainProcess] raise dj_exc_value.with_traceback(traceback) from exc_value
+[2025-03-13 00:05:01,109: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+[2025-03-13 00:05:01,109: WARNING/MainProcess]     
+[2025-03-13 00:05:01,109: WARNING/MainProcess] return self.cursor.execute(sql, params)
+[2025-03-13 00:05:01,109: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 76, in execute
+[2025-03-13 00:05:01,109: WARNING/MainProcess]     
+[2025-03-13 00:05:01,109: WARNING/MainProcess] return self.cursor.execute(query, args)
+[2025-03-13 00:05:01,110: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+[2025-03-13 00:05:01,114: WARNING/MainProcess]     
+[2025-03-13 00:05:01,114: WARNING/MainProcess] res = self._query(mogrified_query)
+[2025-03-13 00:05:01,114: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+[2025-03-13 00:05:01,114: WARNING/MainProcess]     
+[2025-03-13 00:05:01,114: WARNING/MainProcess] db.query(q)
+[2025-03-13 00:05:01,114: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/connections.py", line 280, in query
+[2025-03-13 00:05:01,114: WARNING/MainProcess]     
+[2025-03-13 00:05:01,114: WARNING/MainProcess] _mysql.connection.query(self, query)
+[2025-03-13 00:05:01,114: WARNING/MainProcess] django.db.utils
+[2025-03-13 00:05:01,114: WARNING/MainProcess] .
+[2025-03-13 00:05:01,114: WARNING/MainProcess] OperationalError
+[2025-03-13 00:05:01,114: WARNING/MainProcess] : 
+[2025-03-13 00:05:01,114: WARNING/MainProcess] (2013, 'Lost connection to MySQL server during query')
+[2025-03-13 04:00:00,093: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-14 04:00:00,105: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-15 04:00:00,103: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-16 04:00:00,127: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-17 04:00:00,118: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-18 04:00:00,102: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-19 04:00:00,119: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-20 04:00:00,101: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+RNING/MainProcess] (2013, 'Lost connection to MySQL server during query')
+[2025-03-13 04:00:00,093: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-14 04:00:00,102: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-15 04:00:00,103: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-16 04:00:00,126: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-17 04:00:00,113: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-18 04:00:00,102: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-19 04:00:00,115: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)
+[2025-03-20 04:00:00,103: INFO/MainProcess] Scheduler: Sending due task celery.backend_cleanup (celery.backend_cleanup)

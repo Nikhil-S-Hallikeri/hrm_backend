@@ -1,0 +1,226 @@
+nohup: ignoring input
+/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/celery/platforms.py:829: SecurityWarning: You're running the worker with superuser privileges: this is
+absolutely not recommended!
+
+Please specify a different user using the --uid option.
+
+User information: uid=0 euid=0 gid=0 egid=0
+
+  warnings.warn(SecurityWarning(ROOT_DISCOURAGED.format(
+yest///////////////// 2025-03-11
+today holidays 2025-03-12
+No holidays or active employees for today.
+{'documentation': 'https://opencagedata.com/api', 'licenses': [{'name': 'see attribution guide', 'url': 'https://opencagedata.com/credits'}], 'rate': {'limit': 2500, 'remaining': 2467, 'reset': 1741737600}, 'results': [{'annotations': {'DMS': {'lat': "22° 40' 45.26256'' S", 'lng': "14° 31' 37.93728'' E"}, 'MGRS': '33KVQ5143391910', 'Maidenhead': 'JG77gh36gx', 'Mercator': {'x': 1617161.042, 'y': -2576805.433}, 'OSM': {'edit_url': 'https://www.openstreetmap.org/edit?way=184393212#map=17/-22.67924/14.52720', 'note_url': 'https://www.openstreetmap.org/note/new#map=17/-22.67924/14.52720&layers=N', 'url': 'https://www.openstreetmap.org/?mlat=-22.67924&mlon=14.52720#map=17/-22.67924/14.52720'}, 'UN_M49': {'regions': {'AFRICA': '002', 'NA': '516', 'SOUTHERN_AFRICA': '018', 'SUB-SAHARAN_AFRICA': '202', 'WORLD': '001'}, 'statistical_groupings': ['LEDC']}, 'callingcode': 264, 'currency': {'alternate_symbols': ['N$'], 'decimal_mark': '.', 'disambiguate_symbol': 'N$', 'format': '%n %u', 'html_entity': '$', 'iso_code': 'NAD', 'iso_numeric': '516', 'name': 'Namibian Dollar', 'smallest_denomination': 5, 'subunit': 'Cent', 'subunit_to_unit': 100, 'symbol': '$', 'symbol_first': 0, 'thousands_separator': ','}, 'flag': '🇳🇦', 'geohash': 'k7fqfx67u7m1bew3kzh3', 'qibla': 31.02, 'roadinfo': {'drive_on': 'left', 'road': 'Woermann Street', 'road_type': 'residential', 'speed_in': 'km/h'}, 'sun': {'rise': {'apparent': 1741669380, 'astronomical': 1741664880, 'civil': 1741668060, 'nautical': 1741666500}, 'set': {'apparent': 1741713600, 'astronomical': 1741718100, 'civil': 1741714980, 'nautical': 1741716540}}, 'timezone': {'name': 'Africa/Windhoek', 'now_in_dst': 0, 'offset_sec': 7200, 'offset_string': '+0200', 'short_name': 'CAT'}, 'what3words': {'words': 'outsmarted.cheering.chemical'}}, 'bounds': {'northeast': {'lat': -22.6791681, 'lng': 14.5277944}, 'southwest': {'lat': -22.6793015, 'lng': 14.5266951}}, 'components': {'ISO_3166-1_alpha-2': 'NA', 'ISO_3166-1_alpha-3': 'NAM', 'ISO_3166-2': ['NA-ER'], '_category': 'road', '_normalized_city': 'Swakopmund', '_type': 'road', 'city': 'Swakopmund', 'continent': 'Africa', 'country': 'Namibia', 'country_code': 'na', 'postcode': '13001', 'road': 'Woermann Street', 'road_type': 'residential', 'state': 'Erongo Region', 'suburb': 'Central'}, 'confidence': 9, 'distance_from_q': {'meters': 4}, 'formatted': 'Woermann Street, Swakopmund 13001, Namibia', 'geometry': {'lat': -22.6792396, 'lng': 14.5272048}}], 'status': {'code': 200, 'message': 'OK'}, 'stay_informed': {'blog': 'https://blog.opencagedata.com', 'mastodon': 'https://en.osm.town/@opencage'}, 'thanks': 'For using an OpenCage API', 'timestamp': {'created_http': 'Tue, 11 Mar 2025 19:06:34 GMT', 'created_unix': 1741719994}, 'total_results': 1}
+ 
+ -------------- celery@merida v5.4.0 (opalescent)
+--- ***** ----- 
+-- ******* ---- Linux-5.15.0-126-generic-x86_64-with-glibc2.35 2025-03-12 00:36:35
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         HRM_Project:0x7f960e7f88b0
+- ** ---------- .> transport:   redis://default:**@ballast.proxy.rlwy.net:39739//
+- ** ---------- .> results:     disabled://
+- *** --- * --- .> concurrency: 1 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . HRM_Project.celery.debug_task
+  . LMS_App.tasks.EmployeeAttendance
+  . LMS_App.tasks.exit_time_shedule
+
+[2025-03-12 00:36:38,338: INFO/MainProcess] Connected to redis://default:**@ballast.proxy.rlwy.net:39739//
+[2025-03-12 00:36:39,476: INFO/MainProcess] mingle: searching for neighbors
+[2025-03-12 00:36:44,464: WARNING/MainProcess] /home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3
+Restarting celery worker (/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/bin/celery -A HRM_Project worker --loglevel=info)
+/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/celery/platforms.py:829: SecurityWarning: You're running the worker with superuser privileges: this is
+absolutely not recommended!
+
+Please specify a different user using the --uid option.
+
+User information: uid=0 euid=0 gid=0 egid=0
+
+  warnings.warn(SecurityWarning(ROOT_DISCOURAGED.format(
+yest///////////////// 2025-03-11
+today holidays 2025-03-12
+No holidays or active employees for today.
+{'documentation': 'https://opencagedata.com/api', 'licenses': [{'name': 'see attribution guide', 'url': 'https://opencagedata.com/credits'}], 'rate': {'limit': 2500, 'remaining': 2464, 'reset': 1741737600}, 'results': [{'annotations': {'DMS': {'lat': "22° 40' 45.26256'' S", 'lng': "14° 31' 37.93728'' E"}, 'MGRS': '33KVQ5143391910', 'Maidenhead': 'JG77gh36gx', 'Mercator': {'x': 1617161.042, 'y': -2576805.433}, 'OSM': {'edit_url': 'https://www.openstreetmap.org/edit?way=184393212#map=17/-22.67924/14.52720', 'note_url': 'https://www.openstreetmap.org/note/new#map=17/-22.67924/14.52720&layers=N', 'url': 'https://www.openstreetmap.org/?mlat=-22.67924&mlon=14.52720#map=17/-22.67924/14.52720'}, 'UN_M49': {'regions': {'AFRICA': '002', 'NA': '516', 'SOUTHERN_AFRICA': '018', 'SUB-SAHARAN_AFRICA': '202', 'WORLD': '001'}, 'statistical_groupings': ['LEDC']}, 'callingcode': 264, 'currency': {'alternate_symbols': ['N$'], 'decimal_mark': '.', 'disambiguate_symbol': 'N$', 'format': '%n %u', 'html_entity': '$', 'iso_code': 'NAD', 'iso_numeric': '516', 'name': 'Namibian Dollar', 'smallest_denomination': 5, 'subunit': 'Cent', 'subunit_to_unit': 100, 'symbol': '$', 'symbol_first': 0, 'thousands_separator': ','}, 'flag': '🇳🇦', 'geohash': 'k7fqfx67u7m1bew3kzh3', 'qibla': 31.02, 'roadinfo': {'drive_on': 'left', 'road': 'Woermann Street', 'road_type': 'residential', 'speed_in': 'km/h'}, 'sun': {'rise': {'apparent': 1741669380, 'astronomical': 1741664880, 'civil': 1741668060, 'nautical': 1741666500}, 'set': {'apparent': 1741713600, 'astronomical': 1741718100, 'civil': 1741714980, 'nautical': 1741716540}}, 'timezone': {'name': 'Africa/Windhoek', 'now_in_dst': 0, 'offset_sec': 7200, 'offset_string': '+0200', 'short_name': 'CAT'}, 'what3words': {'words': 'outsmarted.cheering.chemical'}}, 'bounds': {'northeast': {'lat': -22.6791681, 'lng': 14.5277944}, 'southwest': {'lat': -22.6793015, 'lng': 14.5266951}}, 'components': {'ISO_3166-1_alpha-2': 'NA', 'ISO_3166-1_alpha-3': 'NAM', 'ISO_3166-2': ['NA-ER'], '_category': 'road', '_normalized_city': 'Swakopmund', '_type': 'road', 'city': 'Swakopmund', 'continent': 'Africa', 'country': 'Namibia', 'country_code': 'na', 'postcode': '13001', 'road': 'Woermann Street', 'road_type': 'residential', 'state': 'Erongo Region', 'suburb': 'Central'}, 'confidence': 9, 'distance_from_q': {'meters': 4}, 'formatted': 'Woermann Street, Swakopmund 13001, Namibia', 'geometry': {'lat': -22.6792396, 'lng': 14.5272048}}], 'status': {'code': 200, 'message': 'OK'}, 'stay_informed': {'blog': 'https://blog.opencagedata.com', 'mastodon': 'https://en.osm.town/@opencage'}, 'thanks': 'For using an OpenCage API', 'timestamp': {'created_http': 'Tue, 11 Mar 2025 19:08:59 GMT', 'created_unix': 1741720139}, 'total_results': 1}
+ 
+ -------------- celery@merida v5.4.0 (opalescent)
+--- ***** ----- 
+-- ******* ---- Linux-5.15.0-126-generic-x86_64-with-glibc2.35 2025-03-12 00:39:07
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         HRM_Project:0x7feea9730a30
+- ** ---------- .> transport:   redis://default:**@ballast.proxy.rlwy.net:39739//
+- ** ---------- .> results:     disabled://
+- *** --- * --- .> concurrency: 1 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . HRM_Project.celery.debug_task
+  . LMS_App.tasks.EmployeeAttendance
+  . LMS_App.tasks.exit_time_shedule
+
+[2025-03-12 00:39:10,685: INFO/MainProcess] Connected to redis://default:**@ballast.proxy.rlwy.net:39739//
+[2025-03-12 00:39:12,811: INFO/MainProcess] mingle: searching for neighbors
+[2025-03-12 00:39:17,176: INFO/MainProcess] mingle: all alone
+[2025-03-12 00:39:22,753: INFO/MainProcess] celery@merida ready.
+[2025-03-12 11:31:05,726: INFO/MainProcess] sync with celery@LAPTOP-IG5JIR89
+[2025-03-12 12:16:48,752: INFO/MainProcess] missed heartbeat from celery@LAPTOP-IG5JIR89
+[2025-03-12 12:33:48,429: INFO/MainProcess] missed heartbeat from celery@LAPTOP-IG5JIR89
+[2025-03-12 12:51:49,654: INFO/MainProcess] missed heartbeat from celery@LAPTOP-IG5JIR89
+[2025-03-12 12:53:40,712: INFO/MainProcess] missed heartbeat from celery@LAPTOP-IG5JIR89
+[2025-03-[2025-03-12 12:54:06,007: INFO/MainProcess] missed heartbeat from celery@LAPTOP-[2025-03-[2025-03-12 12:59:55,158: WARNING/MainProcess] Substantial drift from celery@LAPTOP-IG5JIR89 may mean clocks are out of sync.  Current drift is 351 seconds.  [orig: 2025-03-12 12:59:55.153599 recv: 2025-03-12 12:54:04[2025-03-[2025-03-12 13:00:09,889: INFO/MainProcess] missed heartbeat from celery@LAPTOP-[2025-03-[2025-03-12 13:01:56,011: INFO/MainProcess] missed heartbeat from celery@LAPTOP-[2025-03-[2025-03-12 13:02:11,017: INFO/MainProcess] missed heartbeat from celery@LAPTOP-[2025-03-[2025-03-12 13:02:21,031: INFO/MainProcess] missed heartbeat from celery@LAPTOP-[2025-03-[2025-03-12 13:06:44,317: INFO/MainProcess] missed heartbeat from celery@LAPTOP-[2025-03-[2025-03-12 13:08:50,224: INFO/MainProcess] missed heartbeat from celery@LAPTOP-[2025-03-[2025-03-12 13:09:15,229: INFO/MainProcess] missed heartbeat from celery@LAPTOP-[2025-03-12 13:09:30,132: INFO/MainProcess] missed heartbeat from celery@LAPTOP-IG5JIR89
+[2025-03-12 13:11:06,199: INFO/MainProcess] missed heartbeat from celery@LAPTOP-IG5JIR89
+[2025-03-12 13:11:57,082: INFO/MainProcess] missed heartbeat from celery@LAPTOP-IG5JIR89
+[2025-03-12 13:12:02,083: INFO/MainProcess] missed heartbeat from celery@LAPTOP-IG5JIR89
+[2025-03-[2025-03-12 13:15:46,416: INFO/MainProcess] sync with celery@LAPTOP-[2025-03-[2025-03-12 13:16:08,879: INFO/MainProcess] missed heartbeat from celery@LAPTOP-[2025-03-[2025-03-12 13:16:44,766: INFO/MainProcess] missed heartbeat from celery@LAPTOP-IG5JIR89
+[2025-03-12 13:17:09,771: INFO/MainProcess] missed heartbeat from celery@LAPTOP-IG5JIR89
+[2025-03-12 13:20:36,653: INFO/MainProcess] missed heartbeat from celery@LAPTOP-IG5JIR89
+[2025-03-12 16:17:50,964: INFO/MainProcess] missed heartbeat from celery@LAPTOP-IG5JIR89
+[2025-03-12 16:27:02,039: INFO/MainProcess] missed heartbeat from celery@LAPTOP-IG5JIR89
+[2025-03-12 16:36:44,987: INFO/MainProcess] sync with celery@LAPTOP-IG5JIR89
+[2025-03-12 16:54:59,785: INFO/MainProcess] sync with celery@LAPTOP-IG5JIR89
+[2025-03-12 17:15:05,506: INFO/MainProcess] sync with celery@LAPTOP-IG5JIR89
+[2025-03-12 17:31:20,978: INFO/MainProcess] missed heartbeat from celery@LAPTOP-IG5JIR89
+[2025-03-12 17:31:41,459: INFO/MainProcess] sync with celery@LAPTOP-IG5JIR89
+[2025-03-13 00:05:02,610: WARNING/MainProcess] Exception in thread 
+[2025-03-13 00:05:02,680: WARNING/MainProcess] Thread-1 (send_daily_emails)
+[2025-03-13 00:05:02,680: WARNING/MainProcess] :
+[2025-03-13 00:05:02,680: WARNING/MainProcess] Traceback (most recent call last):
+[2025-03-13 00:05:02,680: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+[2025-03-13 00:05:02,695: WARNING/MainProcess]     
+[2025-03-13 00:05:02,695: WARNING/MainProcess] return self.cursor.execute(sql, params)
+[2025-03-13 00:05:02,696: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 76, in execute
+[2025-03-13 00:05:02,705: WARNING/MainProcess]     
+[2025-03-13 00:05:02,705: WARNING/MainProcess] return self.cursor.execute(query, args)
+[2025-03-13 00:05:02,705: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+[2025-03-13 00:05:02,706: WARNING/MainProcess]     
+[2025-03-13 00:05:02,706: WARNING/MainProcess] res = self._query(mogrified_query)
+[2025-03-13 00:05:02,706: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+[2025-03-13 00:05:02,706: WARNING/MainProcess]     
+[2025-03-13 00:05:02,706: WARNING/MainProcess] db.query(q)
+[2025-03-13 00:05:02,707: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/connections.py", line 280, in query
+[2025-03-13 00:05:02,707: WARNING/MainProcess]     
+[2025-03-13 00:05:02,707: WARNING/MainProcess] _mysql.connection.query(self, query)
+[2025-03-13 00:05:02,715: WARNING/MainProcess] MySQLdb
+[2025-03-13 00:05:02,715: WARNING/MainProcess] .
+[2025-03-13 00:05:02,715: WARNING/MainProcess] OperationalError
+[2025-03-13 00:05:02,716: WARNING/MainProcess] : 
+[2025-03-13 00:05:02,716: WARNING/MainProcess] (2013, 'Lost connection to MySQL server during query')
+[2025-03-13 00:05:02,716: WARNING/MainProcess] 
+The above exception was the direct cause of the following exception:
+[2025-03-13 00:05:02,716: WARNING/MainProcess] Traceback (most recent call last):
+[2025-03-13 00:05:02,716: WARNING/MainProcess]   File "/u[2025-03-13 00:05:02,759: WARNING/MainProcess] Exception in thread 
+[2025-03-13 00:05:02,774: WARNING/MainProcess] Thread-1 (send_daily_emails)
+[2025-03-13 00:05:02,774: WARNING/MainProcess] :
+[2025-03-13 00:05:02,774: WARNING/MainProcess] Traceback (most recent call last):
+[2025-03-13 00:05:02,774: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+[2025-03-13 00:05:02,779: WARNING/MainProcess]     
+[2025-03-13 00:05:02,779: WARNING/MainProcess] return self.cursor.execute(sql, params)
+[2025-03-13 00:05:02,779: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 76, in execute
+[2025-03-13 00:05:02,780: WARNING/MainProcess]     
+[2025-03-13 00:05:02,780: WARNING/MainProcess] return self.cursor.execute(query, args)
+[2025-03-13 00:05:02,780: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+[2025-03-13 00:05:02,780: WARNING/MainProcess]     
+[2025-03-13 00:05:02,780: WARNING/MainProcess] res = self._query(mogrified_query)
+[2025-03-13 00:05:02,780: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+[2025-03-13 00:05:02,780: WARNING/MainProcess]     
+[2025-03-13 00:05:02,780: WARNING/MainProcess] db.query(q)
+[2025-03-13 00:05:02,781: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/connections.py", line 280, in query
+[2025-03-13 00:05:02,781: WARNING/MainProcess]     
+[2025-03-13 00:05:02,781: WARNING/MainProcess] _mysql.connection.query(self, query)
+[2025-03-13 00:05:02,782: WARNING/MainProcess] MySQLdb
+[2025-03-13 00:05:02,782: WARNING/MainProcess] .
+[2025-03-13 00:05:02,782: WARNING/MainProcess] OperationalError
+[2025-03-13 00:05:02,782: WARNING/MainProcess] : 
+[2025-03-13 00:05:02,782: WARNING/MainProcess] (2013, 'Lost connection to MySQL server during query')
+[2025-03-13 00:05:02,782: WARNING/MainProcess] 
+The above exception was the direct cause of the following exception:
+[2025-03-13 00:05:02,782: WARNING/MainProcess] Traceback (most recent call last):
+[2025-03-13 00:05:02,783: WARNING/MainProcess]   File "/usr/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+[2025-03-13 00:05:02,783: WARNING/MainProcess]     
+[2025-03-13 00:05:02,783: WARNING/MainProcess] self.run()
+[2025-03-13 00:05:02,783: WARNING/MainProcess]   File "/usr/lib/python3.10/threading.py", line 953, in run
+[2025-03-13 00:05:02,783: WARNING/MainProcess]     
+[2025-03-13 00:05:02,783: WARNING/MainProcess] self._target(*self._args, **self._kwargs)
+[2025-03-13 00:05:02,783: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/HRM_App/wish_notification.py", line 368, in send_daily_emails
+[2025-03-13 00:05:02,784: WARNING/MainProcess]     
+[2025-03-13 00:05:02,784: WARNING/MainProcess] send_email_for_unresolved_complaints()
+[2025-03-13 00:05:02,784: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/HRM_App/wish_notification.py", line 185, in send_email_for_unresolved_complaints
+[2025-03-13 00:05:02,784: WARNING/MainProcess]     
+[2025-03-13 00:05:02,784: WARNING/MainProcess] for employee in employees:
+[2025-03-13 00:05:02,784: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/models/query.py", line 400, in __iter__
+[2025-03-13 00:05:02,784: WARNING/MainProcess]     
+[2025-03-13 00:05:02,784: WARNING/MainProcess] self._fetch_all()
+[2025-03-13 00:05:02,785: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+[2025-03-13 00:05:02,785: WARNING/MainProcess]     
+[2025-03-13 00:05:02,785: WARNING/MainProcess] self._result_cache = list(self._iterable_class(self))
+[2025-03-13 00:05:02,785: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+[2025-03-13 00:05:02,785: WARNING/MainProcess]     
+[2025-03-13 00:05:02,785: WARNING/MainProcess] results = compiler.execute_sql(
+[2025-03-13 00:05:02,785: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+[2025-03-13 00:05:02,785: WARNING/MainProcess]     
+[2025-03-13 00:05:02,785: WARNING/MainProcess] cursor.execute(sql, params)
+[2025-03-13 00:05:02,785: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+[2025-03-13 00:05:02,785: WARNING/MainProcess]     
+[2025-03-13 00:05:02,785: WARNING/MainProcess] return super().execute(sql, params)
+[2025-03-13 00:05:02,785: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+[2025-03-13 00:05:02,785: WARNING/MainProcess]     
+[2025-03-13 00:05:02,785: WARNING/MainProcess] return self._execute_with_wrappers(
+[2025-03-13 00:05:02,785: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+[2025-03-13 00:05:02,786: WARNING/MainProcess]     
+[2025-03-13 00:05:02,786: WARNING/MainProcess] return executor(sql, params, many, context)
+[2025-03-13 00:05:02,786: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backend[2025-03-13 04:00:01,232: INFO/MainProcess] Task celery.backend_cleanup[0c7ce0c9-6a0b-4fa1-a497-6df64c1e136e] received
+[2025-03-13 04:00:01,777: INFO/ForkPoolWorker-1] Task celery.backend_cleanup[0c7ce0c9-6a0b-4fa1-a497-6df64c1e136e] succeeded in 0.08967733569443226s: None
+[2025-03-13 11:00:41,630: INFO/MainProcess] sync with celery@LAPTOP-IG5JIR89
+[2025-03-15 04:00:01,425: INFO/MainProcess] Task celery.backend_cleanup[63665bac-461b-47aa-b0cb-9c63ef2614ed] received
+[2025-03-15 04:00:02,018: INFO/ForkPoolWorker-1] Task celery.backend_cleanup[63665bac-461b-47aa-b0cb-9c63ef2614ed] succeeded in 0.16869624331593513s: None
+[2025-03-18 04:00:01,310: INFO/MainProcess] Task celery.backend_cleanup[28a7efd0-9f4f-4078-954f-c6658f5c1c53] received
+[2025-03-18 04:00:01,815: INFO/ForkPoolWorker-1] Task celery.backend_cleanup[28a7efd0-9f4f-4078-954f-c6658f5c1c53] succeeded in 0.1842680312693119s: None
+NG/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 76, in execute
+[2025-03-13 00:05:02,786: WARNING/MainProcess]     
+[2025-03-13 00:05:02,786: WARNING/MainProcess] return self.cursor.execute(query, args)
+[2025-03-13 00:05:02,786: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+[2025-03-13 00:05:02,786: WARNING/MainProcess]     
+[2025-03-13 00:05:02,786: WARNING/MainProcess] res = self._query(mogrified_query)
+[2025-03-13 00:05:02,786: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+[2025-03-13 00:05:02,786: WARNING/MainProcess]     
+[2025-03-13 00:05:02,787: WARNING/MainProcess] db.query(q)
+[2025-03-13 00:05:02,787: WARNING/MainProcess]   File "/home/meridahr-hrmbackendapi/htdocs/hrmbackendapi.meridahr.com/myenv/lib/python3.10/site-packages/MySQLdb/connections.py", line 280, in query
+[2025-03-13 00:05:02,787: WARNING/MainProcess]     
+[2025-03-13 00:05:02,787: WARNING/MainProcess] _mysql.connection.query(self, query)
+[2025-03-13 00:05:02,787: WARNING/MainProcess] django.db.utils
+[2025-03-13 00:05:02,787: WARNING/MainProcess] .
+[2025-03-13 00:05:02,787: WARNING/MainProcess] OperationalError
+[2025-03-13 00:05:02,787: WARNING/MainProcess] : 
+[2025-03-13 00:05:02,787: WARNING/MainProcess] (2013, 'Lost connection to MySQL server during query')
+[2025-03-13 11:00:41,640: INFO/MainProcess] sync with celery@LAPTOP-IG5JIR89
+[2025-03-14 04:00:01,385: INFO/MainProcess] Task celery.backend_cleanup[36623d3b-48e7-436a-961b-7de1e01b5b15] received
+[2025-03-14 04:00:01,862: INFO/ForkPoolWorker-1] Task celery.backend_cleanup[36623d3b-48e7-436a-961b-7de1e01b5b15] succeeded in 0.11887303553521633s: None
+[2025-03-16 04:00:01,703: INFO/MainProcess] Task celery.backend_cleanup[b3411d70-3297-4f85-ad07-755fec002780] received
+[2025-03-16 04:00:02,289: INFO/ForkPoolWorker-1] Task celery.backend_cleanup[b3411d70-3297-4f85-ad07-755fec002780] succeeded in 0.1428700052201748s: None
+[2025-03-17 04:00:01,618: INFO/MainProcess] Task celery.backend_cleanup[a937ebc1-900a-4f25-98ac-3ee06a58ff92] received
+[2025-03-17 04:00:02,130: INFO/ForkPoolWorker-1] Task celery.backend_cleanup[a937ebc1-900a-4f25-98ac-3ee06a58ff92] succeeded in 0.08798770792782307s: None
+[2025-03-18 04:00:01,282: INFO/MainProcess] Task celery.backend_cleanup[661527d0-1cb9-4104-a9a9-fe4b3814cd11] received
+[2025-03-18 04:00:01,796: INFO/ForkPoolWorker-1] Task celery.backend_cleanup[661527d0-1cb9-4104-a9a9-fe4b3814cd11] succeeded in 0.07918061874806881s: None
+[2025-03-19 04:00:01,461: INFO/MainProcess] Task celery.backend_cleanup[32bad83b-8314-4b7e-a170-dc6681d18bba] received
+[2025-03-19 04:00:02,243: INFO/ForkPoolWorker-1] Task celery.backend_cleanup[32bad83b-8314-4b7e-a170-dc6681d18bba] succeeded in 0.1450571659952402s: None
+[2025-03-20 04:00:01,523: INFO/MainProcess] Task celery.backend_cleanup[847106be-0ec5-4a59-b990-5aacc2332451] received
+[2025-03-20 04:00:01,913: INFO/ForkPoolWorker-1] Task celery.backend_cleanup[847106be-0ec5-4a59-b990-5aacc2332451] succeeded in 0.12052569724619389s: None
+baaa-7e61-4f8f-8ef6-9c06e2c06ac9] received
+[2025-03-16 04:00:02,116: INFO/ForkPoolWorker-1] Task celery.backend_cleanup[a8a0baaa-7e61-4f8f-8ef6-9c06e2c06ac9] succeeded in 0.17478287033736706s: None
+[2025-03-17 04:00:01,316: INFO/MainProcess] Task celery.backend_cleanup[40c5a097-1538-4300-baa4-23a44c0b422b] received
+[2025-03-17 04:00:01,778: INFO/ForkPoolWorker-1] Task celery.backend_cleanup[40c5a097-1538-4300-baa4-23a44c0b422b] succeeded in 0.11450943723320961s: None
+[2025-03-19 04:00:01,460: INFO/MainProcess] Task celery.backend_cleanup[5e8e85d8-8c34-4e1d-8514-397da406f59a] received
+[2025-03-19 04:00:02,108: INFO/ForkPoolWorker-1] Task celery.backend_cleanup[5e8e85d8-8c34-4e1d-8514-397da406f59a] succeeded in 0.19469025172293186s: None
+[2025-03-20 04:00:01,588: INFO/MainProcess] Task celery.backend_cleanup[9032780f-51e8-4fa4-8d94-619e62629e9a] received
+[2025-03-20 04:00:01,981: INFO/ForkPoolWorker-1] Task celery.backend_cleanup[9032780f-51e8-4fa4-8d94-619e62629e9a] succeeded in 0.12446247413754463s: None
