@@ -245,6 +245,9 @@ urlpatterns = [
     path("activity/successful-outcomes", SuccessfulOutcomesView.as_view(), name="successful-outcomes"),
     path("activity/rejected", RejectedLeadsView.as_view(), name="rejected-leads"),
     path("activity/closed", ClosedLeadsView.as_view(), name="closed-leads"),
+    path("activity/interview-calls", InterviewCallsView.as_view(), name="interview-calls"),
+    path("activity/client-calls", ClientCallsView.as_view(), name="client-calls"),
+    path("activity/job-posts", JobPostsView.as_view(), name="job-posts"),
 
     path("interview-dashboard-summary/<str:employee_id>", InterviewActivitySummaryView.as_view(), name="interview-dashboard-summary"),
     path("employee-interview-dashboard/<str:employee_id>", EmployeeInterviewDashboardView.as_view(), name="employee-interview-dashboard"),

@@ -791,7 +791,13 @@ class NewDailyAchivesModelSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        representation['Activity_instance'] = instance.current_day_activity.Activity_instance.Activity.activity_name
+        activity_name = "-"
+        try:
+            if instance.current_day_activity and instance.current_day_activity.Activity_instance and instance.current_day_activity.Activity_instance.Activity:
+                activity_name = instance.current_day_activity.Activity_instance.Activity.activity_name
+        except AttributeError:
+            pass
+        representation['Activity_instance'] = activity_name
         return representation
     
 #28-01-2026

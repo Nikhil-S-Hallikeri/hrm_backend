@@ -4090,7 +4090,7 @@ class BaseActivityPaginationView(APIView):
     pagination_class = ActivityDashboardPagination
 
     def get_target_employees(self, current_user, target_emp_id=None):
-        if target_emp_id:
+        if target_emp_id and target_emp_id not in ['', 'undefined', 'null', 'None']:
             return EmployeeDataModel.objects.filter(EmployeeId=target_emp_id)
         
         if current_user.Designation == 'Admin':
@@ -4107,23 +4107,23 @@ class BaseActivityPaginationView(APIView):
     def filter_by_date(self, queryset, filter_type, start_date_str, end_date_str):
         today = timezone.localdate()
         if filter_type == 'today':
-            return queryset.filter(Created_Date__date=today)
+            return queryset.filter(current_day_activity__Date=today)
         elif filter_type == 'this_week':
             start_of_week = today - timedelta(days=today.weekday())
-            return queryset.filter(Created_Date__date__range=(start_of_week, today))
+            return queryset.filter(current_day_activity__Date__range=(start_of_week, today))
         elif filter_type == 'this_month':
             start_date = today.replace(day=1)
-            return queryset.filter(Created_Date__date__range=(start_date, today))
+            return queryset.filter(current_day_activity__Date__range=(start_date, today))
         elif filter_type == 'prev_month':
             prev_month = today - relativedelta(months=1)
             start_date = prev_month.replace(day=1)
             end_date = prev_month.replace(day=monthrange(prev_month.year, prev_month.month)[1])
-            return queryset.filter(Created_Date__date__range=(start_date, end_date))
+            return queryset.filter(current_day_activity__Date__range=(start_date, end_date))
         elif filter_type == 'custom' and start_date_str and end_date_str:
             try:
                 start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
                 end_date = datetime.strptime(end_date_str, "%Y-%m-%d").date()
-                return queryset.filter(Created_Date__date__range=(start_date, end_date))
+                return queryset.filter(current_day_activity__Date__range=(start_date, end_date))
             except ValueError:
                 pass
         return queryset
@@ -4217,8 +4217,8 @@ class RejectedLeadsView(BaseActivityPaginationView):
         queryset = NewDailyAchivesModel.objects.filter(
             current_day_activity__Activity_instance__Employee__in=target_employees
         ).filter(
-            Q(interview_status__in=['rejected', 'Rejected_by_Candidate']) |
-            Q(lead_status='rejected')
+            Q(lead_status='rejected') | 
+            (Q(lead_status__isnull=True) & (Q(interview_status='rejected') | Q(interview_status='Rejected_by_Candidate')))
         ).order_by('-Created_Date')
 
         queryset = self.filter_by_date(queryset, filter_type, start_date, end_date)
@@ -4244,8 +4244,8 @@ class ClosedLeadsView(BaseActivityPaginationView):
         queryset = NewDailyAchivesModel.objects.filter(
             current_day_activity__Activity_instance__Employee__in=target_employees
         ).filter(
-            Q(client_status='closed') |
-            Q(lead_status='closed')
+            Q(lead_status='closed') | 
+            (Q(lead_status__isnull=True) & Q(client_status='closed'))
         ).order_by('-Created_Date')
 
         queryset = self.filter_by_date(queryset, filter_type, start_date, end_date)
@@ -4329,6 +4329,81 @@ class CompletedFollowUpsView(BaseActivityPaginationView):
 
         serializer = FollowUpSerializer(queryset, many=True)
         return Response({"completed_followups": serializer.data})
+
+class InterviewCallsView(BaseActivityPaginationView):
+    def get(self, request):
+        login_emp_id = request.GET.get("login_emp_id")
+        target_emp_id = request.GET.get("target_emp_id")
+        filter_type = request.GET.get("filter_type", "this_month")
+        start_date = request.GET.get("start_date")
+        end_date = request.GET.get("end_date")
+        search = request.GET.get("search")
+
+        try:
+            current_user = EmployeeDataModel.objects.get(EmployeeId=login_emp_id)
+        except EmployeeDataModel.DoesNotExist:
+            return Response({"error": "User not found"}, status=404)
+
+        target_employees = self.get_target_employees(current_user, target_emp_id)
+        queryset = NewDailyAchivesModel.objects.filter(
+            current_day_activity__Activity_instance__Employee__in=target_employees,
+            current_day_activity__Activity_instance__Activity__activity_name='interview_calls'
+        ).order_by('-Created_Date')
+
+        queryset = self.filter_by_date(queryset, filter_type, start_date, end_date)
+        queryset = self.search_queryset(queryset, search)
+
+        return self.get_paginated_response(queryset, request)
+
+class ClientCallsView(BaseActivityPaginationView):
+    def get(self, request):
+        login_emp_id = request.GET.get("login_emp_id")
+        target_emp_id = request.GET.get("target_emp_id")
+        filter_type = request.GET.get("filter_type", "this_month")
+        start_date = request.GET.get("start_date")
+        end_date = request.GET.get("end_date")
+        search = request.GET.get("search")
+
+        try:
+            current_user = EmployeeDataModel.objects.get(EmployeeId=login_emp_id)
+        except EmployeeDataModel.DoesNotExist:
+            return Response({"error": "User not found"}, status=404)
+
+        target_employees = self.get_target_employees(current_user, target_emp_id)
+        queryset = NewDailyAchivesModel.objects.filter(
+            current_day_activity__Activity_instance__Employee__in=target_employees,
+            current_day_activity__Activity_instance__Activity__activity_name='client_calls'
+        ).order_by('-Created_Date')
+
+        queryset = self.filter_by_date(queryset, filter_type, start_date, end_date)
+        queryset = self.search_queryset(queryset, search)
+
+        return self.get_paginated_response(queryset, request)
+
+class JobPostsView(BaseActivityPaginationView):
+    def get(self, request):
+        login_emp_id = request.GET.get("login_emp_id")
+        target_emp_id = request.GET.get("target_emp_id")
+        filter_type = request.GET.get("filter_type", "this_month")
+        start_date = request.GET.get("start_date")
+        end_date = request.GET.get("end_date")
+        search = request.GET.get("search")
+
+        try:
+            current_user = EmployeeDataModel.objects.get(EmployeeId=login_emp_id)
+        except EmployeeDataModel.DoesNotExist:
+            return Response({"error": "User not found"}, status=404)
+
+        target_employees = self.get_target_employees(current_user, target_emp_id)
+        queryset = NewDailyAchivesModel.objects.filter(
+            current_day_activity__Activity_instance__Employee__in=target_employees,
+            current_day_activity__Activity_instance__Activity__activity_name='job_posts'
+        ).order_by('-Created_Date')
+
+        queryset = self.filter_by_date(queryset, filter_type, start_date, end_date)
+        queryset = self.search_queryset(queryset, search)
+
+        return self.get_paginated_response(queryset, request)
 
 class ConvertToFollowUpView(APIView):
     def post(self, request):
