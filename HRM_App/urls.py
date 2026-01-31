@@ -248,6 +248,7 @@ urlpatterns = [
     path("activity/interview-calls", InterviewCallsView.as_view(), name="interview-calls"),
     path("activity/client-calls", ClientCallsView.as_view(), name="client-calls"),
     path("activity/job-posts", JobPostsView.as_view(), name="job-posts"),
+    path("activity/lead-log/<int:activity_id>", LeadActivityLogView.as_view(), name="lead-activity-log"),
 
     path("interview-dashboard-summary/<str:employee_id>", InterviewActivitySummaryView.as_view(), name="interview-dashboard-summary"),
     path("employee-interview-dashboard/<str:employee_id>", EmployeeInterviewDashboardView.as_view(), name="employee-interview-dashboard"),

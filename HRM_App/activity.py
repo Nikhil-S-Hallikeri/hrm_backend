@@ -3090,17 +3090,31 @@ class BulkActivityUploadView(APIView):
                         status=status.HTTP_400_BAD_REQUEST
                     )
                 
+                #30/01/2026
                 column_mapping = {
-                    'Client Organization': 'client_organization', 'Client Name': 'client_name', 'Client Phone': 'client_phone',
+                    # 'Client Organization': 'client_organization', 'Client Name': 'client_name', 'Client Phone': 'client_phone',
+                    'Client Organization': 'client_company_name', 'Client Name': 'client_name', 'Client Phone': 'client_phone',
                     'Purpose': 'client_enquire_purpose', "Client's Spoke": 'client_spok', 'Client Status': 'client_status',
-                    'Client Remarks': 'client_call_remarks'
+                    # 'Client Remarks': 'client_call_remarks'
+                    'Client Remarks': 'client_call_remarks', 'Client Email': 'client_email'
                 }
                 df.rename(columns=column_mapping, inplace=True)
                 for index, row in df.iterrows():
                     record_data = {k: v for k, v in row.to_dict().items() if pd.notna(v)}
                     if 'client_status' in record_data:
-                        status_map = {"converted to client": "job", "closed": "closed", "follow up": "followup"}
-                        record_data['client_status'] = status_map.get(str(record_data['client_status']).lower(), None)
+                        #30/01/2026
+                        # status_map = {"converted to client": "job", "closed": "closed", "follow up": "followup"}
+                        # record_data['client_status'] = status_map.get(str(record_data['client_status']).lower(), None)
+                        status_val = str(record_data['client_status']).lower().strip()
+                        status_map = {
+                            "converted to client": "converted_to_client", 
+                            "converted_to_client": "converted_to_client",
+                            "job": "job",
+                            "closed": "closed", 
+                            "follow up": "followup",
+                            "followup": "followup"
+                        }
+                        record_data['client_status'] = status_map.get(status_val, None)
                     records_to_create.append(record_data)
             else:
                 return Response({"error": f"Unsupported activity_list_id: {activity_list_id}"}, status=status.HTTP_400_BAD_REQUEST)
@@ -3161,7 +3175,7 @@ class DownloadActivityTemplateView(APIView):
         elif activity_list_id == 3:
             # Client Calls Template
             headers = [
-                'Client Organization', 'Client Name', 'Client Phone', 'Purpose', 
+                'Client Organization', 'Client Name', 'Client Phone', 'Client Email', 'Purpose', 
                 'Client\'s Spoke', 'Client Status', 'Client Remarks'
             ]
             filename = "client_calls_template.csv"
@@ -3290,3 +3304,150 @@ class PublicCandidateInterviewCallView(APIView):
                 {"error": f"An error occurred: {str(e)}"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+#30/01/2026
+class LeadActivityLogView(APIView):
+    def get(self, request, activity_id):
+        try:
+            # Fetch the reference activity to get the phone number
+            reference_activity = NewDailyAchivesModel.objects.filter(pk=activity_id).first()
+            
+            if not reference_activity:
+                return Response({"error": "Activity not found"}, status=status.HTTP_404_NOT_FOUND)
+
+            # Extract Phone Number (Candidate or Client)
+            phone = reference_activity.candidate_phone or reference_activity.client_phone
+            
+            if not phone:
+                return Response({"error": "No phone number associated with this lead to track history."}, status=status.HTTP_400_BAD_REQUEST)
+
+            # 1. Fetch Main Activities (NewDailyAchivesModel)
+            main_activities_qs = NewDailyAchivesModel.objects.filter(
+                Q(candidate_phone=phone) | Q(client_phone=phone)
+            )
+
+            # 2. Fetch Follow-Ups (FollowUpModel)
+            # We want all follow-ups linked to ANY of the main activities found above.
+            followups_qs = FollowUpModel.objects.filter(
+                activity_record__in=main_activities_qs
+            ).select_related('activity_record').order_by('-created_on')
+
+            # Identify the "Closing" follow-up for each activity record
+            # We assume the LATEST completed follow-up for a 'closed' activity is the one that closed it.
+            # Since followups_qs is ordered by -created_on (Newest first), the first completed one we see for an ID is the latest.
+            closing_followup_ids = {}
+            for f in followups_qs:
+                if f.activity_record.id not in closing_followup_ids:
+                    if f.activity_record.lead_status in ['closed', 'rejected'] and f.status == 'completed':
+                        closing_followup_ids[f.activity_record.id] = f.id
+
+            # Combine and Sort
+            timeline_items = []
+
+            # Process Main Activities
+            for item in main_activities_qs:
+                activity_name = "Unknown Activity"
+                employee_name = "Unknown"
+                try:
+                    if item.current_day_activity and item.current_day_activity.Activity_instance:
+                        if item.current_day_activity.Activity_instance.Activity:
+                             activity_name = item.current_day_activity.Activity_instance.Activity.activity_name
+                        if item.current_day_activity.Activity_instance.Employee:
+                             employee_name = item.current_day_activity.Activity_instance.Employee.Name
+                except:
+                    pass
+
+                timeline_items.append({
+                    "item_type": "activity",
+                    "sort_date": item.Created_Date,
+                    "data": item,
+                    "activity_name": activity_name,
+                    "employee_name": employee_name
+                })
+
+            # Process Follow-ups
+            for item in followups_qs:
+                employee_name = "Unknown"
+                try:
+                    if item.created_by:
+                        employee_name = item.created_by.Name
+                except:
+                    pass
+
+                timeline_items.append({
+                    "item_type": "followup",
+                    "sort_date": item.created_on,
+                    "data": item,
+                    "activity_name": f"Follow Up ({item.follow_up_type})",
+                    "employee_name": employee_name
+                })
+
+            # Sort by date descending (Newest first)
+            timeline_items.sort(key=lambda x: x["sort_date"], reverse=True)
+
+            # Serialize
+            serialized_history = []
+            
+            for entry in timeline_items:
+                data = entry["data"]
+                if entry["item_type"] == "activity":
+                    # It's a NewDailyAchivesModel (The START of the activity)
+                    
+                    notes = data.client_call_remarks or data.interview_call_remarks or data.job_post_remarks or data.closure_reason or data.client_enquire_purpose
+                    
+                    serialized_history.append({
+                        "id": data.id,
+                        "created_date": data.Created_Date,
+                        "activity_name": entry["activity_name"],
+                        "status": "active", # Lowercase for frontend color matching
+                        "sub_status": data.rejection_type or data.client_status or data.interview_status,
+                        "notes": notes,
+                        "expected_date": None,
+                        "expected_time": None,
+                        "employee_name": entry["employee_name"],
+                        "type": "Main Activity"
+                    })
+                else:
+                    # It's a FollowUpModel
+                    status_label = "Follow Up"
+                    
+                    # Check if this ID was identified as the closing one
+                    if data.activity_record.id in closing_followup_ids and closing_followup_ids[data.activity_record.id] == data.id:
+                        status_label = data.activity_record.lead_status # Keep lowercase (closed/rejected)
+                    elif data.status == 'pending':
+                        status_label = "Pending Follow Up"
+                    else:
+                        status_label = "Follow Up" # Completed intermediate step
+
+                    serialized_history.append({
+                        "id": data.id,
+                        "created_date": data.created_on,
+                        "activity_name": entry["activity_name"],
+                        "status": status_label, 
+                        "sub_status": None,
+                        "notes": data.notes,
+                        "expected_date": data.expected_date,
+                        "expected_time": data.expected_time,
+                        "employee_name": entry["employee_name"],
+                        "type": "Follow Up"
+                    })
+
+            # Lead Details (Take from the latest MAIN activity, or the very first item if valid)
+            latest_main = main_activities_qs.order_by('-Created_Date').first()
+            if not latest_main and reference_activity:
+                latest_main = reference_activity
+
+            response_data = {
+                "lead_details": {
+                    "name": latest_main.candidate_name or latest_main.client_name if latest_main else "Unknown",
+                    "phone": latest_main.candidate_phone or latest_main.client_phone if latest_main else "Unknown",
+                    "email": latest_main.candidate_email or latest_main.client_email if latest_main else "",
+                    "company_name": latest_main.client_company_name if latest_main else "",
+                    "current_status": latest_main.lead_status or "Active" if latest_main else "Unknown" 
+                },
+                "history": serialized_history
+            }
+
+            return Response(response_data, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

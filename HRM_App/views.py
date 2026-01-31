@@ -4128,6 +4128,7 @@ class BaseActivityPaginationView(APIView):
                 pass
         return queryset
 
+    #30-01-2026
     def search_queryset(self, queryset, search_query):
         if not search_query:
             return queryset
@@ -4136,7 +4137,10 @@ class BaseActivityPaginationView(APIView):
             Q(candidate_phone__icontains=search_query) |
             Q(client_name__icontains=search_query) |
             Q(client_phone__icontains=search_query) |
-            Q(position__icontains=search_query)
+            Q(position__icontains=search_query) |
+            Q(client_company_name__icontains=search_query) | # New Field
+            Q(client_email__icontains=search_query) |    # New Field
+            Q(candidate_designation__icontains=search_query) # New Field
         )
 
     def get_paginated_response(self, queryset, request):

@@ -1157,17 +1157,23 @@ class NewDailyAchivesModel(models.Model):
     interview_call_remarks=models.TextField(blank=True,null=True)
 
     # client callss
+    #30-01-2026
     client_name=models.CharField(max_length=100,blank=True,null=True)
     client_phone=models.CharField(max_length=100,blank=True,null=True)
     client_enquire_purpose=models.CharField(max_length=1500,blank=True,null=True)
     client_spok=models.CharField(max_length=1500,blank=True,null=True)
     choice=[
             ("job","Job"),
+            ("converted_to_client","Converted to Client"), # Added to match frontend
             ("closed","Closed"),
             ("followup","FollowUp"),]
 
     client_status=models.CharField(max_length=100,blank=True,null=True,choices=choice)
     client_call_remarks=models.TextField(blank=True,null=True)
+    
+    # New fields added for enhanced client tracking
+    client_company_name = models.CharField(max_length=500, blank=True, null=True)
+    client_email = models.CharField(max_length=150, blank=True, null=True)
     
     #28-01-2026
     # Lead status tracking for follow-up management
